@@ -1,9 +1,9 @@
 compiler = gcc -Wall -Wextra
-name = hello-world
+name = hello_world
 
-build: hello-world
+build: hello_world
 
-hello-world: hello-world.c
+hello_world: hello_world.c
 	$(compiler) $< -o $(name) 
 clean: 
 	rm *.o
