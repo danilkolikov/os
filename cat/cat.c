@@ -1,10 +1,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <stdio.h>
 
 void error_happened() {
 	char* error_buf = strerror(errno);
-	write(2, error_buf, strlen(error_buf));
+	printf("%s", error_buf);
 }
 	
 int main() {
