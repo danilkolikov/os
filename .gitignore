@@ -27,7 +27,8 @@
 *.i*86
 *.x86_64
 *.hex
-*.
+/hello_world/hello_world
+/cat/cat
 
 # Debug files
 *.dSYM/
