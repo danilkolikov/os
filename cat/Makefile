@@ -2,10 +2,10 @@ compiler = gcc -Wall -Wextra
 
 build: cat
 
-cat: cat.o
+%: %.o
 	$(compiler) $< -o $@
 
-cat.o: cat.c
+%.o: %.c
 	$(compiler) -c $<
 
 clean: 
