@@ -9,7 +9,7 @@ build: hello_world
 	$(compiler) -c $<  
 
 clean: 
-	rm *.o
+	rm -f *.o
 
 rebuild: clean build
 

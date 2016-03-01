@@ -9,6 +9,6 @@ build: cat
 	$(compiler) -c $<
 
 clean: 
-	rm *.o
+	rm -f *.o
 
 rebuild: clean build
