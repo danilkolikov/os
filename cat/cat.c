@@ -59,9 +59,6 @@ int main(int argc, char** args) {
 		close(read_fd);
 	}
 
-	if (read_len == -1) {
-		error_happened();
-		return errno;
-	}
+
 	return 0;
 }	 
