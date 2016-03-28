@@ -29,6 +29,7 @@
 *.hex
 /hello_world/hello_world
 /cat/cat
+/sigusr/sigusr
 
 # Debug files
 *.dSYM/
