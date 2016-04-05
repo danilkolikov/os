@@ -30,6 +30,7 @@
 /hello_world/hello_world
 /cat/cat
 /sigusr/sigusr
+/midtermsh/midtermsh
 
 # Debug files
 *.dSYM/
