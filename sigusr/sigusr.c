@@ -4,9 +4,13 @@
 #include <string.h>
 
 void set_sigaction(struct sigaction *act) {
-    if (sigaction(SIGUSR1, act, NULL) != 0 || 
-            sigaction(SIGUSR2, act, NULL) != 0) {
-        printf("Can't set signal handlers\n");
+    for (int i = 1; i < 32; i++) {
+        if (i == SIGKILL || i == SIGSTOP) {
+            continue;
+        }
+        if (sigaction(i, act, NULL) != 0) {
+            printf("Can't set signal handler %d\n", i);
+        }
     }
 }
 
@@ -15,13 +19,7 @@ void handler(int signal, siginfo_t* info, void* sth) {
     memset(&act, 0, sizeof act);
     set_sigaction(&act);
 
-    char* signame;
-    if (signal == SIGUSR1) {
-        signame = "SIGUSR1";
-    } else {
-        signame = "SIGUSR2";
-    }
-    printf("%s from %d\n", signame, info->si_pid);
+    printf("%d from %d\n", signal, info->si_pid);
 }
 
 int main() {
@@ -30,13 +28,16 @@ int main() {
    
     sigset_t mask;
     sigemptyset(&mask);
-    sigaddset(&mask, SIGUSR1);
-    sigaddset(&mask, SIGUSR2);
+    for (int i = 1; i < 32; i++) {
+        if (i == SIGKILL || i == SIGSTOP) {
+            continue;
+        }
+        sigaddset(&mask, i);
+    }
     act.sa_mask = mask;
-    act.sa_flags = SA_SIGINFO | SA_NODEFER;
-
+    act.sa_flags = SA_SIGINFO;
+    
     set_sigaction(&act);
-
     if (sleep(10) == 0) {
         printf("No signals were caught\n");
     }
